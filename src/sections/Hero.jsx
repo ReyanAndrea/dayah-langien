@@ -65,7 +65,7 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle font-body text-lg md:text-xl text-navy-100 max-w-2xl mx-auto mb-10">
-          Kecamatan Bandar Baru, Pidie Jaya, Aceh - Dokumentasi program kerja
+          Kecamatan Bandar Baru, Pidie Jaya, Aceh, Dokumentasi program kerja
           dan profil gampong dari Kuliah Kerja Nyata Juli-Agustus 2026
         </p>
 
