@@ -65,8 +65,9 @@ export default function Hero() {
         </h1>
 
         <p className="hero-subtitle font-body text-lg md:text-xl text-navy-100 max-w-2xl mx-auto mb-10">
-          Kecamatan Bandar Baru, Pidie Jaya, Aceh, Dokumentasi program kerja
-          dan profil gampong dari Kuliah Kerja Nyata Juli-Agustus 2026
+          Kecamatan Bandar Baru, Pidie Jaya, Aceh. Dokumentasi Gampong, Profil Gampong, dan Struktur
+          Kepengurusan Gampong. Hasil Publikasi KKN R-XXIX-14 Universitas
+          Syiah Kuala
         </p>
 
         <div className="hero-cta flex flex-col sm:flex-row gap-4 justify-center">
@@ -80,7 +81,7 @@ export default function Hero() {
             href="#struktur-gampong"
             className="px-8 py-3 border border-navy-300/30 hover:border-gold-500/50 text-white font-semibold rounded-lg transition-colors"
           >
-            Lihat Struktur Gampong
+            Lihat Struktur Kepengurusan
           </a>
         </div>
       </div>
