@@ -2,17 +2,12 @@ import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import kegiatan01 from '../assets/foto/kegiatan/kegiatan01.jpg'
-import kegiatan02 from '../assets/foto/kegiatan/kegiatan02.jpg'
-import kegiatan03 from '../assets/foto/kegiatan/kegiatan03.jpg'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const galeri = [
-  { src: kegiatan01, caption: 'gatauu dah ini ntah lg ngapain' },
-  { src: kegiatan02, caption: 'ini juga gatau lagi ngapain ' },
-  { src: kegiatan03, caption: 'ini juga gatau' },
-]
+// Taro foto suasana & pemandangan Gampong Dayah Langien di sini
+// Format: { src: fotoImport, caption: 'Keterangan foto' }
+const galeri = []
 
 export default function Galeri() {
   const sectionRef = useRef(null)
@@ -21,10 +16,7 @@ export default function Galeri() {
   useGSAP(
     () => {
       gsap.from('.galeri-item', {
-        scrollTrigger: {
-          trigger: '.galeri-grid',
-          start: 'top 80%',
-        },
+        scrollTrigger: { trigger: '.galeri-grid', start: 'top 80%' },
         scale: 0.9,
         opacity: 0,
         duration: 0.6,
@@ -36,22 +28,18 @@ export default function Galeri() {
   )
 
   return (
-    <section
-      ref={sectionRef}
-      id="galeri"
-      className="relative py-24 bg-navy-800"
-    >
+    <section ref={sectionRef} id="galeri" className="relative py-24 bg-navy-800">
       <div className="max-w-6xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-sm font-medium text-gold-500 uppercase tracking-wider">
             Dokumentasi
           </span>
           <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mt-3 mb-6">
-            Galeri Kegiatan
+            Galeri Gampong
           </h2>
           <p className="text-navy-100 max-w-2xl mx-auto">
-            Momen-momen selama pelaksanaan KKN R-XXIX-14 di Gampong Dayah
-            Langien.
+            Suasana, pemandangan, dan kehidupan sehari-hari warga Gampong
+            Dayah Langien.
           </p>
         </div>
 
@@ -77,27 +65,20 @@ export default function Galeri() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-navy-300">
-            Belum ada foto ditambahkan.
+          <p className="text-center text-navy-300 text-sm">
+            Foto suasana desa akan ditambahkan di sini.
           </p>
         )}
       </div>
 
-      {/* Lightbox sederhana */}
       {activeImg && (
         <div
           className="fixed inset-0 z-50 bg-navy-900/95 flex items-center justify-center p-6 cursor-pointer"
           onClick={() => setActiveImg(null)}
         >
           <div className="max-w-3xl w-full">
-            <img
-              src={activeImg.src}
-              alt={activeImg.caption}
-              className="w-full h-auto rounded-lg"
-            />
-            <p className="text-center text-navy-100 mt-4">
-              {activeImg.caption}
-            </p>
+            <img src={activeImg.src} alt={activeImg.caption} className="w-full h-auto rounded-lg" />
+            <p className="text-center text-navy-100 mt-4">{activeImg.caption}</p>
           </div>
         </div>
       )}

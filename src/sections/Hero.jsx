@@ -77,10 +77,10 @@ export default function Hero() {
             Jelajahi Gampong
           </a>
           <a
-            href="#program-kerja"
+            href="#struktur-gampong"
             className="px-8 py-3 border border-navy-300/30 hover:border-gold-500/50 text-white font-semibold rounded-lg transition-colors"
           >
-            Lihat Program Kerja
+            Lihat Struktur Gampong
           </a>
         </div>
       </div>

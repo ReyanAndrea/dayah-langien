@@ -1,11 +1,10 @@
 import Navbar from './sections/Navbar'
 import Hero from './sections/Hero'
 import TentangDesa from './sections/TentangDesa'
-import ProgramKerja from './sections/ProgramKerja'
-import Timeline from './sections/Timeline'
-import TimAnggota from './sections/TimAnggota'
+import StrukturGampong from './sections/StrukturGampong'
 import Galeri from './sections/Galeri'
 import Kontak from './sections/Kontak'
+import TentangKKN from './sections/TentangKKN'
 import Footer from './sections/Footer'
 
 function App() {
@@ -14,11 +13,10 @@ function App() {
       <Navbar />
       <Hero />
       <TentangDesa />
-      <ProgramKerja />
-      <Timeline />
-      <TimAnggota />
+      <StrukturGampong />
       <Galeri />
       <Kontak />
+      <TentangKKN />
       <Footer />
     </main>
   )
