@@ -5,6 +5,12 @@ import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
 import fotoReyan from '../assets/foto/tim/tim-01-reyan-andrea.jpeg'
+import fotoGhina from '../assets/foto/tim/tim-02-ghina.jpg'
+import fotoDara from '../assets/foto/tim/tim-03-dara.jpg'
+import fotoGusni from '../assets/foto/tim/tim-04-gusni.jpg'
+import fotoEka from '../assets/foto/tim/tim-05-eka.jpg'
+import fotoShaifa from '../assets/foto/tim/tim-06-shaifa.jpg'
+import fotoMursalin from '../assets/foto/tim/tim-07-mursalin.jpg'
 
 const dokumentasi = [
   { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
@@ -19,12 +25,12 @@ const dpl = [
 
 const anggota = [
   { nama: 'Reyan Andrea', nim: '2208107010014', prodi: 'Informatika', foto: fotoReyan },
-  { nama: 'Ghinaya Ananda', nim: '2304110010039', prodi: 'Perencanaan Wilayah dan Kota' },
-  { nama: 'Dara Nabila', nim: '2310104010077', prodi: 'Ilmu Pemerintahan' },
-  { nama: 'Gusni Sapriyanti', nim: '2305109010032', prodi: 'Proteksi Tanaman' },
-  { nama: 'Shaifa Rahmadina', nim: '2312101010123', prodi: 'Ilmu Keperawatan' },
-  { nama: 'Eka Ramadani', nim: '2305104010026', prodi: 'Peternakan' },
-  { nama: 'Mursalin', nim: '2206101020006', prodi: 'Pendidikan Sejarah' },
+  { nama: 'Ghinaya Ananda', nim: '2304110010039', prodi: 'Perencanaan Wilayah dan Kota', foto: fotoGhina },
+  { nama: 'Dara Nabila', nim: '2310104010077', prodi: 'Ilmu Pemerintahan', foto: fotoDara },
+  { nama: 'Gusni Sapriyanti', nim: '2305109010032', prodi: 'Proteksi Tanaman', foto: fotoGusni },
+  { nama: 'Shaifa Rahmadina', nim: '2312101010123', prodi: 'Ilmu Keperawatan', foto: fotoShaifa },
+  { nama: 'Eka Ramadani', nim: '2305104010026', prodi: 'Peternakan', foto: fotoEka },
+  { nama: 'Mursalin', nim: '2206101020006', prodi: 'Pendidikan Sejarah', foto: fotoMursalin },
 ]
 
 const programAnggota = [
