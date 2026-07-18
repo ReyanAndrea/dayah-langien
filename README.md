@@ -1,27 +1,49 @@
-# Website Profil Gampong Dayah Langien
+# 🌾 Website Profil Gampong Dayah Langien
 
-Website dokumentasi profil desa dan program kerja KKN Reguler R-XXIX-14 Universitas Syiah Kuala di Gampong Dayah Langien, Kecamatan Bandar Baru, Kabupaten Pidie Jaya, Aceh.
+Website dokumentasi **Profil Gampong Dayah Langien** sekaligus dokumentasi **Program Kerja KKN Reguler R-XXIX-14 Universitas Syiah Kuala** yang dilaksanakan di **Gampong Dayah Langien, Kecamatan Bandar Baru, Kabupaten Pidie Jaya, Aceh**.
 
-**Live site:** https://dayah-langien-8v3vedpaq-reyanandreas-projects.vercel.app
+> Website ini dibuat sebagai **time capsule** (arsip digital) yang dapat dijadikan referensi oleh mahasiswa KKN pada periode berikutnya, sehingga informasi mengenai profil desa dan dokumentasi kegiatan tetap terdokumentasi dengan baik.
 
-## Tujuan
+🌐 **Live Demo:**  
+https://dayah-langien.vercel.app
 
-Website ini dibangun sebagai **dokumentasi "time capsule"** — bukan situs desa yang butuh maintenance rutin, melainkan referensi statis yang bisa dijadikan acuan oleh kelompok KKN periode berikutnya yang ditempatkan di gampong yang sama.
+---
 
-## Tech Stack
+# ✨ Tujuan Website
 
-- **React 19** + **Vite 8**
-- **Tailwind CSS v4** (CSS-based theming via `@theme`, bukan `tailwind.config.js`)
-- **GSAP** + `@gsap/react` (animasi scroll-trigger)
-- Hosting: **Vercel**
+Website ini **bukan** dirancang sebagai website resmi desa yang memerlukan pembaruan berkala.
 
-## Struktur Folder
+Tujuan utama website ini adalah:
+
+- 📖 Mendokumentasikan profil Gampong Dayah Langien.
+- 📸 Menyimpan dokumentasi kegiatan KKN R-XXIX-14.
+- 🗂️ Menjadi arsip digital (*time capsule*) untuk kelompok KKN berikutnya.
+- 💡 Menjadi referensi struktur website profil desa yang mudah dikembangkan.
+
+---
+
+# 🚀 Tech Stack
+
+- ⚛️ React 19
+- ⚡ Vite 8
+- 🎨 Tailwind CSS v4
+- 🎬 GSAP + @gsap/react
+- ☁️ Vercel
+
+---
+
+# 📁 Struktur Folder
+
+```text
 src/
-├── assets/foto/
-│   ├── tim/          # foto anggota KKN
-│   ├── kegiatan/      # dokumentasi kegiatan KKN
-│   └── desa/          # foto sarana-prasarana & suasana desa (belum terisi)
-├── sections/           # 1 section = 1 komponen halaman
+│
+├── assets/
+│   └── foto/
+│       ├── tim/
+│       ├── kegiatan/
+│       └── desa/
+│
+├── sections/
 │   ├── Navbar.jsx
 │   ├── Hero.jsx
 │   ├── TentangDesa.jsx
@@ -30,38 +52,159 @@ src/
 │   ├── SaranaPrasarana.jsx
 │   ├── Kebencanaan.jsx
 │   ├── StrukturGampong.jsx
-│   ├── Galeri.jsx        # foto desa (belum terisi)
+│   ├── Galeri.jsx
 │   ├── Kontak.jsx
-│   ├── TentangKKN.jsx    # tab Tim & Dokumentasi kegiatan KKN
+│   ├── TentangKKN.jsx
 │   └── Footer.jsx
-├── App.jsx              # urutan section dirender di sini
-├── main.jsx              # entry point, registrasi GSAP ScrollTrigger
-└── index.css             # import Tailwind + palette warna navy-gold
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+```
 
-## Cara Menjalankan
+---
+
+# 📦 Instalasi
+
+Clone repository kemudian jalankan:
 
 ```bash
 npm install
+```
+
+Menjalankan mode development:
+
+```bash
 npm run dev
 ```
 
-## Cara Menambah Foto
+Build untuk production:
 
-1. Taro file foto di folder yang sesuai (`src/assets/foto/desa/`, dll)
-2. Import di komponen terkait: `import namaFoto from '../assets/foto/desa/nama-file.jpg'`
-3. Pasang ke field `foto`/`src` di data array komponen tersebut
+```bash
+npm run build
+```
 
-**Penting:** compress foto sebelum upload (target di bawah 300-500 KB), pakai [squoosh.app](https://squoosh.app) atau [tinypng.com](https://tinypng.com) — foto besar bikin website lambat dimuat.
+Preview hasil build:
 
-## Catatan untuk KKN Periode Selanjutnya
+```bash
+npm run preview
+```
 
-- Bagian **belum terisi**: foto Galeri desa, foto Sarana & Prasarana per fasilitas, foto Keuchik & Sekdes di Struktur Gampong
-- Data profil desa (geografis, demografi, sejarah, potensi) diambil dari laporan survei DPL dan proposal KKN R-XXIX-14 — update sesuai kondisi terbaru kalau ada perubahan
-- Struktur section modular (1 file = 1 section), gampang nambah/hapus section baru lewat `App.jsx`
-- Warna tema (navy-gold) didefinisikan di `src/index.css` bagian `@theme`, ganti di situ kalau mau ubah skema warna
+---
 
-## Kelompok KKN R-XXIX-14
+# 🖼️ Menambahkan Foto
 
-Dosen Pembimbing Lapangan: Trisda Kurniawan, S.P., M.P. & Edy Miswar, S.Si., M.Si.
+1. Simpan foto pada folder yang sesuai.
 
-Anggota: Reyan Andrea (Informatika), Ghinaya Ananda (PWK), Dara Nabila (Ilmu Pemerintahan), Gusni Sapriyanti (Proteksi Tanaman), Shaifa Rahmadina (Ilmu Keperawatan), Eka Ramadani (Peternakan), Mursalin (Pendidikan Sejarah)
+```text
+src/assets/foto/desa/
+src/assets/foto/tim/
+src/assets/foto/kegiatan/
+```
+
+2. Import gambar.
+
+```javascript
+import fotoDesa from "../assets/foto/desa/contoh.jpg";
+```
+
+3. Tambahkan pada data array atau komponen yang menggunakan gambar tersebut.
+
+---
+
+# ⚠️ Optimasi Gambar
+
+Sebelum mengunggah foto, lakukan kompresi terlebih dahulu.
+
+Rekomendasi:
+
+- https://squoosh.app
+- https://tinypng.com
+
+Ukuran ideal gambar:
+
+- **300–500 KB** per foto
+
+Tujuannya agar website tetap ringan dan cepat dimuat.
+
+---
+
+# 📌 Catatan untuk Kelompok KKN Selanjutnya
+
+Beberapa bagian website masih dapat dikembangkan, antara lain:
+
+- 📷 Galeri foto desa.
+- 🏢 Foto setiap sarana dan prasarana.
+- 👤 Foto Keuchik dan Sekretaris Gampong pada bagian Struktur Pemerintahan.
+
+Apabila terdapat perubahan data desa, silakan sesuaikan informasi berikut:
+
+- Profil desa
+- Data geografis
+- Data demografi
+- Sejarah desa
+- Potensi desa
+- Struktur pemerintahan
+
+Website menggunakan konsep **modular component**, sehingga setiap section berada pada file yang terpisah di folder `sections/`.
+
+Untuk menambah atau menghapus section, cukup mengubah urutan render pada file:
+
+```text
+src/App.jsx
+```
+
+---
+
+# 🎨 Kustomisasi Tema
+
+Seluruh warna utama menggunakan skema **Navy** dan **Gold**.
+
+Konfigurasi tema berada pada:
+
+```text
+src/index.css
+```
+
+menggunakan fitur **@theme** milik Tailwind CSS v4.
+
+---
+
+# 👨‍💻 Kelompok KKN Reguler R-XXIX-14
+
+### Dosen Pembimbing Lapangan
+
+- Trisda Kurniawan, S.P., M.P.
+- Edy Miswar, S.Si., M.Si.
+
+### Mahasiswa
+
+| Nama | Program Studi |
+|------|---------------|
+| Reyan Andrea | Informatika |
+| Ghinaya Ananda | Perencanaan Wilayah dan Kota |
+| Dara Nabila | Ilmu Pemerintahan |
+| Gusni Sapriyanti | Proteksi Tanaman |
+| Shaifa Rahmadina | Ilmu Keperawatan |
+| Eka Ramadani | Peternakan |
+| Mursalin | Pendidikan Sejarah |
+
+---
+
+# 📄 Lisensi
+
+Website ini dibuat untuk keperluan dokumentasi kegiatan **KKN Reguler R-XXIX-14 Universitas Syiah Kuala**.
+
+Seluruh dokumentasi dapat digunakan sebagai referensi akademik maupun pengembangan website profil desa berikutnya dengan tetap mencantumkan sumber apabila diperlukan.
+
+---
+
+<div align="center">
+
+**KKN Reguler R-XXIX-14 Universitas Syiah Kuala**
+
+*Gampong Dayah Langien, Kecamatan Bandar Baru, Kabupaten Pidie Jaya, Aceh*
+
+2026
+
+</div>
