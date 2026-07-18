@@ -18,3 +18,11 @@
   --font-heading: 'Poppins', sans-serif;
   --font-body: 'Inter', sans-serif;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 80px;
+}

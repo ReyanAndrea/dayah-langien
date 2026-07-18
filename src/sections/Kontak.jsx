@@ -29,14 +29,18 @@ export default function Kontak() {
   useGSAP(
     () => {
       gsap.from('.kontak-card', {
-        scrollTrigger: {
-          trigger: '.kontak-grid',
-          start: 'top 80%',
-        },
+        scrollTrigger: { trigger: '.kontak-grid', start: 'top 80%' },
         y: 30,
         opacity: 0,
         duration: 0.6,
         stagger: 0.12,
+        ease: 'power3.out',
+      })
+      gsap.from('.kontak-map', {
+        scrollTrigger: { trigger: '.kontak-map', start: 'top 85%' },
+        y: 30,
+        opacity: 0,
+        duration: 0.7,
         ease: 'power3.out',
       })
     },
@@ -44,11 +48,7 @@ export default function Kontak() {
   )
 
   return (
-    <section
-      ref={sectionRef}
-      id="kontak"
-      className="relative py-24 bg-navy-900"
-    >
+    <section ref={sectionRef} id="kontak" className="relative py-24 bg-navy-900">
       <div className="max-w-5xl mx-auto px-6">
         <div className="text-center mb-16">
           <span className="text-sm font-medium text-gold-500 uppercase tracking-wider">
@@ -63,7 +63,7 @@ export default function Kontak() {
           </p>
         </div>
 
-        <div className="kontak-grid grid sm:grid-cols-3 gap-5">
+        <div className="kontak-grid grid sm:grid-cols-3 gap-5 mb-10">
           {kontak.map((item) => (
             <div
               key={item.label}
@@ -78,6 +78,19 @@ export default function Kontak() {
               <p className="text-sm text-navy-100">{item.value}</p>
             </div>
           ))}
+        </div>
+
+        <div className="kontak-map rounded-xl overflow-hidden border border-navy-300/10">
+          <iframe
+            title="Lokasi Gampong Dayah Langien"
+            src="https://www.google.com/maps?q=Dayah+Langien,+Bandar+Baru,+Pidie+Jaya,+Aceh&output=embed"
+            width="100%"
+            height="360"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
         </div>
       </div>
     </section>

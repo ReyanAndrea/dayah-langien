@@ -31,6 +31,12 @@ const dokumentasi = [
   { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
   { src: kegiatan02, caption: 'Dokumentasi kegiatan 2' },
   { src: kegiatan03, caption: 'Dokumentasi kegiatan 3' },
+  { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
+  { src: kegiatan02, caption: 'Dokumentasi kegiatan 2' },
+  { src: kegiatan03, caption: 'Dokumentasi kegiatan 3' },
+  { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
+  { src: kegiatan02, caption: 'Dokumentasi kegiatan 2' },
+  { src: kegiatan03, caption: 'Dokumentasi kegiatan 3' }
 ]
 
 function getInitials(nama) {
@@ -80,8 +86,8 @@ export default function TentangKKN() {
               key={t.key}
               onClick={() => setActiveTab(t.key)}
               className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${activeTab === t.key
-                  ? 'bg-gold-500 text-navy-900'
-                  : 'text-navy-100 border border-navy-300/20 hover:border-gold-500/40'
+                ? 'bg-gold-500 text-navy-900'
+                : 'text-navy-100 border border-navy-300/20 hover:border-gold-500/40'
                 }`}
             >
               {t.label}
