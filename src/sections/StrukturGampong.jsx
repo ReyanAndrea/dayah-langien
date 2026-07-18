@@ -5,9 +5,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
+// Buat pasang foto Keuchik: import file foto di paling atas, lalu isi field `foto`
+// Contoh:
+// import fotoKeuchik from '../assets/foto/desa/keuchik-m-adam.jpg'
+// lalu tambahin: foto: fotoKeuchik,  di item Keuchik di bawah
+
 const pimpinan = [
-  { nama: 'M. Adam', jabatan: 'Keuchik' },
-  { nama: 'Mukhtar', jabatan: 'Sekretaris Gampong' },
+  { nama: 'M. Adam', jabatan: 'Keuchik', foto: null },
+  { nama: 'Mukhtar', jabatan: 'Sekretaris Gampong', foto: null },
 ]
 
 const unitKerja = [
@@ -29,6 +34,10 @@ const unitKerja = [
     items: ['PKK', 'Karang Taruna', 'LPM', 'BUMG'],
   },
 ]
+
+function getInitials(nama) {
+  return nama.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
+}
 
 export default function StrukturGampong() {
   const sectionRef = useRef(null)
@@ -77,19 +86,27 @@ export default function StrukturGampong() {
           {pimpinan.map((p) => (
             <div
               key={p.nama}
-              className="pimpinan-card bg-gradient-to-br from-navy-800 to-navy-800/60 border border-gold-500/30 rounded-xl p-6 text-center"
+              className="pimpinan-card bg-gradient-to-br from-navy-800 to-navy-800/60 border border-gold-500/30 rounded-xl overflow-hidden text-center"
             >
-              <div className="w-14 h-14 rounded-full bg-gold-500/10 border border-gold-500/40 flex items-center justify-center mx-auto mb-3">
-                <span className="font-heading text-lg font-bold text-gold-500">
-                  {p.nama.split(' ').map((w) => w[0]).slice(0, 2).join('')}
-                </span>
+              <div className="aspect-square w-full overflow-hidden bg-navy-700/50 flex items-center justify-center">
+                {p.foto ? (
+                  <img src={p.foto} alt={p.nama} className="w-full h-full object-cover" />
+                ) : (
+                  <div className="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/40 flex items-center justify-center">
+                    <span className="font-heading text-lg font-bold text-gold-500">
+                      {getInitials(p.nama)}
+                    </span>
+                  </div>
+                )}
               </div>
-              <h4 className="font-heading text-base font-semibold text-white mb-1">
-                {p.nama}
-              </h4>
-              <p className="text-xs text-gold-500 uppercase tracking-wide">
-                {p.jabatan}
-              </p>
+              <div className="p-5">
+                <h4 className="font-heading text-base font-semibold text-white mb-1">
+                  {p.nama}
+                </h4>
+                <p className="text-xs text-gold-500 uppercase tracking-wide">
+                  {p.jabatan}
+                </p>
+              </div>
             </div>
           ))}
         </div>

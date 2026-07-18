@@ -1,6 +1,3 @@
-import kegiatan01 from '../assets/foto/kegiatan/kegiatan01.jpg'
-import kegiatan02 from '../assets/foto/kegiatan/kegiatan02.jpg'
-import kegiatan03 from '../assets/foto/kegiatan/kegiatan03.jpg'
 import { useRef, useState } from 'react'
 import { useGSAP } from '@gsap/react'
 import gsap from 'gsap'
@@ -11,12 +8,9 @@ import fotoGusni from '../assets/foto/tim/tim-04-gusni.jpg'
 import fotoEka from '../assets/foto/tim/tim-05-eka.jpg'
 import fotoShaifa from '../assets/foto/tim/tim-06-shaifa.jpg'
 import fotoMursalin from '../assets/foto/tim/tim-07-mursalin.jpg'
-
-const dokumentasi = [
-  { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
-  { src: kegiatan02, caption: 'Dokumentasi kegiatan 2' },
-  { src: kegiatan03, caption: 'Dokumentasi kegiatan 3' },
-]
+import kegiatan01 from '../assets/foto/kegiatan/kegiatan01.jpg'
+import kegiatan02 from '../assets/foto/kegiatan/kegiatan02.jpg'
+import kegiatan03 from '../assets/foto/kegiatan/kegiatan03.jpg'
 
 const dpl = [
   { nama: 'Trisda Kurniawan, S.P., M.P.', peran: 'DPL 1' },
@@ -33,30 +27,10 @@ const anggota = [
   { nama: 'Mursalin', nim: '2206101020006', prodi: 'Pendidikan Sejarah', foto: fotoMursalin },
 ]
 
-const programAnggota = [
-  { nama: 'Reyan Andrea', kegiatan: ['Sistem Informasi Website Profil Gampong', 'Modul Informasi Kebencanaan pada Website', 'Pelatihan Dasar Microsoft Word untuk Anak-anak'] },
-  { nama: 'Ghinaya Ananda', kegiatan: ['Peta Administrasi Wilayah Gampong (ArcGIS)', 'Peta Jalur Evakuasi Bencana', 'Sosialisasi Cara Membaca Peta Evakuasi'] },
-  { nama: 'Dara Nabila', kegiatan: ['Papan Informasi Pengelolaan Sampah & Kebersihan', 'Pendampingan Administrasi Data Kependudukan'] },
-  { nama: 'Gusni Sapriyanti', kegiatan: ['Perangkap Feromon Seks (Pengendalian Hama)', 'Penanaman Tanaman Refugia', 'Edukasi Serangga Sahabat & Musuh Tanaman'] },
-  { nama: 'Shaifa Rahmadina', kegiatan: ['Sosialisasi 6 Langkah Cuci Tangan Pakai Sabun', 'Edukasi Gizi Seimbang "Isi Piringku"'] },
-  { nama: 'Eka Ramadani', kegiatan: ['Biosekuriti Peternakan', 'Penyuntikan Vitamin Ternak Ruminansia', 'Penanaman TOGA'] },
-  { nama: 'Mursalin', kegiatan: ['Lomba Permainan Tradisional', 'Edukasi Kebencanaan untuk Anak-anak'] },
-]
-
-const kegiatanBersama = [
-  'Pengajian Mingguan di Meunasah',
-  'Gotong Royong Meunasah',
-  'Jalan Pagi Bersama Warga',
-  'Pendampingan Pemasaran UMKM Desa',
-  'Partisipasi dalam Kegiatan Posyandu',
-]
-
-const fases = [
-  { tanggal: '27 Juni 2026', label: 'Survei Lokasi', desc: 'Survei DPL ke Gampong Dayah Langien untuk pemetaan awal kondisi desa.' },
-  { tanggal: '8 - 14 Juli', label: 'Minggu 1', desc: 'Pembukaan KKN dan dimulainya program utama tiap anggota.' },
-  { tanggal: '15 - 21 Juli', label: 'Minggu 2', desc: 'Pengembangan program utama & pelaksanaan program penunjang.' },
-  { tanggal: '22 - 28 Juli', label: 'Minggu 3', desc: 'Kolaborasi dengan BPBD/Kecamatan, gotong royong, dan pendampingan UMKM.' },
-  { tanggal: '29 Jul - 3 Agu', label: 'Minggu 4', desc: 'Simulasi evakuasi, evaluasi program, dan penyusunan laporan akhir.' },
+const dokumentasi = [
+  { src: kegiatan01, caption: 'Dokumentasi kegiatan 1' },
+  { src: kegiatan02, caption: 'Dokumentasi kegiatan 2' },
+  { src: kegiatan03, caption: 'Dokumentasi kegiatan 3' },
 ]
 
 function getInitials(nama) {
@@ -65,9 +39,7 @@ function getInitials(nama) {
 
 const tabs = [
   { key: 'tim', label: 'Tim' },
-  { key: 'program', label: 'Program Kerja' },
   { key: 'dokumentasi', label: 'Dokumentasi' },
-  { key: 'timeline', label: 'Timeline' },
 ]
 
 export default function TentangKKN() {
@@ -108,8 +80,8 @@ export default function TentangKKN() {
               key={t.key}
               onClick={() => setActiveTab(t.key)}
               className={`px-5 py-2 text-sm font-medium rounded-full transition-colors ${activeTab === t.key
-                ? 'bg-gold-500 text-navy-900'
-                : 'text-navy-100 border border-navy-300/20 hover:border-gold-500/40'
+                  ? 'bg-gold-500 text-navy-900'
+                  : 'text-navy-100 border border-navy-300/20 hover:border-gold-500/40'
                 }`}
             >
               {t.label}
@@ -154,35 +126,6 @@ export default function TentangKKN() {
             </div>
           )}
 
-          {activeTab === 'program' && (
-            <div>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-14">
-                {programAnggota.map((org) => (
-                  <div key={org.nama} className="bg-navy-900/60 border border-navy-300/10 hover:border-gold-500/30 rounded-xl p-6 transition-colors">
-                    <h4 className="font-heading text-base font-semibold text-white mb-3">{org.nama}</h4>
-                    <ul className="space-y-2">
-                      {org.kegiatan.map((k) => (
-                        <li key={k} className="flex items-start gap-2 text-sm text-navy-100 leading-relaxed">
-                          <span className="w-1.5 h-1.5 rounded-full bg-gold-500 mt-1.5 shrink-0" />
-                          {k}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <h3 className="font-heading text-xl font-bold text-white mb-6 text-center">Kegiatan Bersama Kelompok</h3>
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {kegiatanBersama.map((item) => (
-                  <div key={item} className="flex items-center gap-3 bg-navy-900/40 rounded-lg px-4 py-3">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold-500 shrink-0" />
-                    <span className="text-sm text-navy-100">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           {activeTab === 'dokumentasi' && (
             <div className="columns-2 md:columns-3 gap-4 space-y-4">
               {dokumentasi.map((item, i) => (
@@ -199,22 +142,6 @@ export default function TentangKKN() {
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {activeTab === 'timeline' && (
-            <div className="max-w-3xl mx-auto relative pl-8">
-              <div className="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gold-500 via-gold-500/50 to-transparent" />
-              <div className="space-y-8">
-                {fases.map((fase) => (
-                  <div key={fase.label} className="relative">
-                    <span className="absolute -left-8 top-1 w-3 h-3 rounded-full bg-gold-500 ring-4 ring-navy-800" />
-                    <span className="inline-block text-xs font-medium text-gold-500 bg-gold-500/10 rounded-full px-3 py-1 mb-2">{fase.tanggal}</span>
-                    <h4 className="font-heading text-base font-semibold text-white mb-1">{fase.label}</h4>
-                    <p className="text-sm text-navy-100 leading-relaxed">{fase.desc}</p>
-                  </div>
-                ))}
-              </div>
             </div>
           )}
         </div>

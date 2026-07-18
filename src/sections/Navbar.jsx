@@ -5,6 +5,8 @@ import gsap from 'gsap'
 const navLinks = [
   { label: 'Beranda', href: '#hero' },
   { label: 'Tentang Desa', href: '#tentang-desa' },
+  { label: 'Sejarah', href: '#sejarah-desa' },
+  { label: 'Kebencanaan', href: '#kebencanaan' },
   { label: 'Struktur Gampong', href: '#struktur-gampong' },
   { label: 'Galeri', href: '#galeri' },
   { label: 'Kontak', href: '#kontak' },
@@ -44,15 +46,15 @@ export default function Navbar() {
           Dayah <span className="text-gold-500">Langien</span>
         </a>
 
-        <div className="hidden md:flex items-center gap-7">
+        <div className="hidden lg:flex items-center gap-6">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className="text-sm font-medium text-navy-100 hover:text-gold-500 transition-colors">
+            <a key={link.href} href={link.href} className="text-sm font-medium text-navy-100 hover:text-gold-500 transition-colors whitespace-nowrap">
               {link.label}
             </a>
           ))}
         </div>
 
-        <button className="md:hidden text-white" onClick={() => setIsMobileOpen(!isMobileOpen)} aria-label="Toggle menu">
+        <button className="lg:hidden text-white" onClick={() => setIsMobileOpen(!isMobileOpen)} aria-label="Toggle menu">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isMobileOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -64,7 +66,7 @@ export default function Navbar() {
       </div>
 
       {isMobileOpen && (
-        <div className="md:hidden bg-navy-900/95 backdrop-blur-md px-6 py-4 flex flex-col gap-4">
+        <div className="lg:hidden bg-navy-900/95 backdrop-blur-md px-6 py-4 flex flex-col gap-4">
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setIsMobileOpen(false)} className="text-sm font-medium text-navy-100 hover:text-gold-500 transition-colors">
               {link.label}
