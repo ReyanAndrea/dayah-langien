@@ -5,38 +5,96 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Buat pasang foto Keuchik: import file foto di paling atas, lalu isi field `foto`
-// Contoh:
-// import fotoKeuchik from '../assets/foto/desa/keuchik-m-adam.jpg'
-// lalu tambahin: foto: fotoKeuchik,  di item Keuchik di bawah
+const keuchik = { nama: 'M. ADAM', jabatan: 'KEUCHIK', foto: null }
 
-const pimpinan = [
-  { nama: 'M. Adam', jabatan: 'Keuchik', foto: null },
-  { nama: 'Mukhtar', jabatan: 'Sekretaris Gampong', foto: null },
+const tuhaPeut = [
+  { nama: 'KARIMUDDIN LEO', jabatan: 'KETUA' },
+  { nama: 'TGK. M. JAFAR', jabatan: 'WAKIL KETUA' },
+  { nama: 'WAHYU ORIZANI SUHENDRA, S.Pd', jabatan: 'ANGGOTA' },
+  { nama: 'IDRIS', jabatan: 'ANGGOTA' },
+  { nama: 'BAHAGIA', jabatan: 'ANGGOTA' },
 ]
 
-const unitKerja = [
-  {
-    title: 'Perangkat Gampong',
-    items: ['Kaur (Urusan)', 'Kasi (Seksi)', 'Kepala Dusun'],
-  },
-  {
-    title: 'Tuha Peut Gampong',
-    subtitle: 'Setara BPD',
-    items: ['Menyepakati Qanun Gampong', 'Menampung aspirasi masyarakat', 'Mengawasi kinerja Keuchik'],
-  },
-  {
-    title: 'Lembaga Adat',
-    items: ['Imum Mukim', 'Imum Gampong', 'Tuha Lapan', 'Peuetua Peut', 'Keujruen Blang'],
-  },
-  {
-    title: 'Lembaga Kemasyarakatan (LKG)',
-    items: ['PKK', 'Karang Taruna', 'LPM', 'BUMG'],
-  },
+const imumDusun = [
+  { nama: 'TGK. DAHLAN', jabatan: 'IMUM DUSUN DAYAH' },
+  { nama: 'TGK. M. TAHIR', jabatan: 'IMUM DUSUN BLANG BEUNOT' },
+  { nama: 'TGK. SYUKRI', jabatan: 'IMUM DUSUN BLANG BILI' },
+]
+
+const operator = { nama: 'RAMADHANI, S.Pt', jabatan: 'OPERATOR', foto: null }
+const sekdes = { nama: 'MUKHTAR, SP', jabatan: 'SEKRETARIS DESA', foto: null }
+
+const kasiKaur = [
+  { nama: 'SAFRIZAL, S.Pd', jabatan: 'KASI PEMERINTAHAN' },
+  { nama: 'SUHAIMI', jabatan: 'KASI KESEJAHTERAAN & PELAYANAN' },
+  { nama: 'MUHAMMAD RAZALI, S.Pd', jabatan: 'KAUR UMUM & PERENCANAAN' },
+  { nama: 'FAHMI', jabatan: 'KAUR KEUANGAN' },
+]
+
+const kadusPemuda = [
+  { nama: 'SULAIMAN RAMLI', jabatan: 'KADUS DAYAH' },
+  { nama: 'NASRULLAH', jabatan: 'KADUS BLANG BEUNOT' },
+  { nama: 'ARIF FINDA', jabatan: 'KADUS BLANG BILI' },
+  { nama: 'ANDI MURSALIN', jabatan: 'KETUA PEMUDA' },
 ]
 
 function getInitials(nama) {
-  return nama.split(' ').map((w) => w[0]).slice(0, 2).join('').toUpperCase()
+  if (!nama) return ''
+  return nama
+    .replace(/,.*$/, '')
+    .split(' ')
+    .filter((w) => !['TGK.', 'S.Pd', 'S.Pt', 'SP'].includes(w))
+    .map((w) => w[0])
+    .slice(0, 2)
+    .join('')
+    .toUpperCase()
+}
+
+function NodeCard({ nama, jabatan, foto, highlight }) {
+  return (
+    <div className={`org-card ${highlight ? 'ring-2 ring-gold-500/80 border-gold-400' : ''}`}>
+      <div className="org-card-img">
+        {foto ? (
+          <img src={foto} alt={nama} className="w-full h-full object-cover" />
+        ) : (
+          <span className="font-heading text-xs font-bold text-gold-500">
+            {getInitials(nama)}
+          </span>
+        )}
+      </div>
+      <div className="p-2 text-center flex-1 min-w-0">
+        <p className="text-[10px] font-bold text-gold-500 uppercase leading-none truncate mb-1">
+          {jabatan}
+        </p>
+        <p className="text-[11px] font-bold text-white leading-tight uppercase line-clamp-2">
+          {nama}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function SideListCard({ title, items }) {
+  return (
+    <div className="w-56 bg-navy-800/80 border border-gold-500/30 rounded-lg overflow-hidden shadow-lg">
+      <div className="bg-navy-700/80 px-3 py-2 border-b border-gold-500/20 text-center">
+        <p className="text-xs font-bold text-gold-500 uppercase tracking-wider">{title}</p>
+      </div>
+      <div className="divide-y divide-navy-600/50">
+        {items.map((it) => (
+          <div key={it.nama} className="px-3 py-2 flex items-center gap-2.5">
+            <div className="w-7 h-7 rounded bg-navy-900/60 shrink-0 flex items-center justify-center text-[10px] font-bold text-gold-400 border border-navy-500/40">
+              {getInitials(it.nama)}
+            </div>
+            <div className="min-w-0">
+              <p className="text-[9px] font-bold text-gold-400 uppercase leading-none truncate">{it.jabatan}</p>
+              <p className="text-[11px] font-semibold text-white leading-tight uppercase truncate">{it.nama}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export default function StrukturGampong() {
@@ -44,20 +102,11 @@ export default function StrukturGampong() {
 
   useGSAP(
     () => {
-      gsap.from('.pimpinan-card', {
-        scrollTrigger: { trigger: '.pimpinan-grid', start: 'top 85%' },
-        y: 20,
+      gsap.from('.chart-wrapper', {
+        scrollTrigger: { trigger: '.chart-wrapper', start: 'top 80%' },
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: 'power3.out',
-      })
-      gsap.from('.unit-card', {
-        scrollTrigger: { trigger: '.unit-grid', start: 'top 80%' },
         y: 30,
-        opacity: 0,
-        duration: 0.6,
-        stagger: 0.1,
+        duration: 0.7,
         ease: 'power3.out',
       })
     },
@@ -65,80 +114,111 @@ export default function StrukturGampong() {
   )
 
   return (
-    <section ref={sectionRef} id="struktur-gampong" className="relative py-24 bg-navy-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="text-center mb-16">
+    <section ref={sectionRef} id="struktur-gampong" className="relative py-20 bg-navy-900">
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="text-center mb-10">
           <span className="text-sm font-medium text-gold-500 uppercase tracking-wider">
             Struktur Gampong
           </span>
-          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mt-3 mb-6">
-            Pengurus & Kelembagaan
+          <h2 className="font-heading text-3xl md:text-5xl font-bold text-white mt-2 mb-4">
+            Bagan Struktur Pemerintahan
           </h2>
-          <p className="text-navy-100 max-w-2xl mx-auto">
-            Pemerintahan Gampong Dayah Langien diselenggarakan oleh Pemerintah
-            Gampong bersama Tuha Peut Gampong, memadukan sistem administrasi
-            nasional dengan struktur adat dan keistimewaan Aceh.
+          <p className="text-navy-100 max-w-2xl mx-auto text-sm">
+            Gampong Dayah Langien, Kecamatan Bandar Baru, Kabupaten Pidie Jaya
           </p>
         </div>
 
-        {/* Pimpinan utama */}
-        <div className="pimpinan-grid grid sm:grid-cols-2 gap-5 mb-6 max-w-xl mx-auto">
-          {pimpinan.map((p) => (
-            <div
-              key={p.nama}
-              className="pimpinan-card bg-gradient-to-br from-navy-800 to-navy-800/60 border border-gold-500/30 rounded-xl overflow-hidden text-center"
-            >
-              <div className="aspect-square w-full overflow-hidden bg-navy-700/50 flex items-center justify-center">
-                {p.foto ? (
-                  <img src={p.foto} alt={p.nama} className="w-full h-full object-cover" />
-                ) : (
-                  <div className="w-16 h-16 rounded-full bg-gold-500/10 border border-gold-500/40 flex items-center justify-center">
-                    <span className="font-heading text-lg font-bold text-gold-500">
-                      {getInitials(p.nama)}
-                    </span>
-                  </div>
-                )}
+        <p className="text-center text-xs text-navy-300 mb-4 lg:hidden">
+          Geser ke samping untuk melihat bagan lengkap
+        </p>
+
+        <div className="chart-wrapper overflow-x-auto pb-8 flex justify-center">
+          <div className="min-w-[900px] flex flex-col items-center">
+
+            {/* LEVEL 1: TOP (TUHA PEUT | KEUCHIK | IMUM DUSUN) */}
+            <div className="relative flex items-center justify-between w-full max-w-[860px]">
+              {/* Garis Putus-putus Kemitraan Kiri-Kanan */}
+              <div className="absolute top-1/2 left-[220px] right-[220px] border-t-2 border-dashed border-gold-500 -translate-y-1/2 z-0" />
+
+              <SideListCard title="Tuha Peut Gampong" items={tuhaPeut} />
+
+              <div className="relative z-10">
+                <NodeCard {...keuchik} highlight />
               </div>
-              <div className="p-5">
-                <h4 className="font-heading text-base font-semibold text-white mb-1">
-                  {p.nama}
-                </h4>
-                <p className="text-xs text-gold-500 uppercase tracking-wide">
-                  {p.jabatan}
-                </p>
-              </div>
+
+              <SideListCard title="Imum Dusun" items={imumDusun} />
             </div>
-          ))}
-        </div>
 
-        {/* Garis penghubung visual */}
-        <div className="flex justify-center mb-6">
-          <div className="w-px h-8 bg-gold-500/30" />
-        </div>
+            {/* LEVEL 2: OPERATOR & SEKDES */}
+            <div className="relative w-[440px] pt-10">
+              {/* Garis Vertikal Turun LANGSUNG Dari Bawah Keuchik ke Garis Horizontal */}
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-0.5 h-10 line-gold" />
 
-        {/* Unit kerja */}
-        <div className="unit-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {unitKerja.map((u) => (
-            <div
-              key={u.title}
-              className="unit-card bg-navy-800/60 border border-navy-300/10 hover:border-gold-500/30 rounded-xl p-5 transition-colors"
-            >
-              <h4 className="font-heading text-sm font-semibold text-white mb-1">
-                {u.title}
-              </h4>
-              {u.subtitle && (
-                <p className="text-xs text-gold-500 mb-3">{u.subtitle}</p>
-              )}
-              <ul className="space-y-1.5 mt-2">
-                {u.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-navy-100">
-                    <span className="w-1 h-1 rounded-full bg-gold-500 mt-1.5 shrink-0" />
-                    {item}
-                  </li>
+              {/* Garis Horizontal Cabang 2 (Antara Operator & Sekdes) */}
+              <div className="absolute top-10 left-[95px] right-[95px] h-0.5 line-gold" />
+
+              {/* Garis Vertikal Turun ke Top Card Operator & Sekdes */}
+              <div className="absolute top-10 left-[95px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-10 right-[95px] w-0.5 h-4 line-gold" />
+
+              <div className="pt-4 flex justify-between">
+                <NodeCard {...operator} />
+                <NodeCard {...sekdes} />
+              </div>
+
+              {/* Garis Vertikal Turun DARI SEKDES (Kanan) SAJA Ke Level Berikutnya */}
+              <div className="absolute bottom-0 right-[95px] translate-y-full w-0.5 h-10 line-gold" />
+            </div>
+
+            {/* SPACING KARENA GARIS TURUN SEKDES */}
+            <div className="h-10" />
+
+            {/* LEVEL 3: 4 KASI & KAUR */}
+            <div className="relative w-[840px]">
+              {/* Garis Horizontal Atas menghubungkan 4 Kasi/Kaur */}
+              <div className="absolute top-0 left-[95px] right-[95px] h-0.5 line-gold" />
+
+              {/* Garis Vertikal Masuk ke Masing-masing 4 Card */}
+              <div className="absolute top-0 left-[95px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 left-[311px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 right-[311px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 right-[95px] w-0.5 h-4 line-gold" />
+
+              <div className="pt-4 flex justify-between">
+                {kasiKaur.map((item) => (
+                  <NodeCard key={item.jabatan} {...item} />
                 ))}
-              </ul>
+              </div>
+
+              {/* Garis Vertikal Keluar dari Bawah Masing-masing 4 Card Kasi/Kaur */}
+              <div className="absolute bottom-0 left-[95px] translate-y-full w-0.5 h-8 line-gold" />
+              <div className="absolute bottom-0 left-[311px] translate-y-full w-0.5 h-8 line-gold" />
+              <div className="absolute bottom-0 right-[311px] translate-y-full w-0.5 h-8 line-gold" />
+              <div className="absolute bottom-0 right-[95px] translate-y-full w-0.5 h-8 line-gold" />
             </div>
-          ))}
+
+            {/* SPACING DARI KASI KE KADUS */}
+            <div className="h-8" />
+
+            {/* LEVEL 4: 4 KADUS & KETUA PEMUDA */}
+            <div className="relative w-[840px]">
+              {/* Garis Horizontal Bawah penyambung ke Level 4 */}
+              <div className="absolute top-0 left-[95px] right-[95px] h-0.5 line-gold" />
+
+              {/* Garis Vertikal Masuk ke Masing-masing 4 Card Terbawah */}
+              <div className="absolute top-0 left-[95px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 left-[311px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 right-[311px] w-0.5 h-4 line-gold" />
+              <div className="absolute top-0 right-[95px] w-0.5 h-4 line-gold" />
+
+              <div className="pt-4 flex justify-between">
+                {kadusPemuda.map((item) => (
+                  <NodeCard key={item.jabatan} {...item} />
+                ))}
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>
