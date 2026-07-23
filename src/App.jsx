@@ -1,3 +1,9 @@
+import { Routes, Route } from 'react-router-dom'
+import { AuthProvider } from './context/AuthContext'
+import ProtectedRoute from './admin/ProtectedRoute'
+import Login from './admin/Login'
+import Dashboard from './admin/Dashboard'
+
 import Navbar from './sections/Navbar'
 import Hero from './sections/Hero'
 import TentangDesa from './sections/TentangDesa'
@@ -11,7 +17,7 @@ import Kontak from './sections/Kontak'
 import TentangKKN from './sections/TentangKKN'
 import Footer from './sections/Footer'
 
-function App() {
+function PublicSite() {
   return (
     <main>
       <Navbar />
@@ -27,6 +33,25 @@ function App() {
       <TentangKKN />
       <Footer />
     </main>
+  )
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <Routes>
+        <Route path="/" element={<PublicSite />} />
+        <Route path="/admin/login" element={<Login />} />
+        <Route
+          path="/admin"
+          element={
+            <ProtectedRoute>
+              <Dashboard />
+            </ProtectedRoute>
+          }
+        />
+      </Routes>
+    </AuthProvider>
   )
 }
 
